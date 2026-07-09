@@ -1,0 +1,17 @@
+# Money-atom proof-obligation ratchet.
+#
+# Each count is the number of monetary values (currency parameters,
+# currency parameter-table cells, and currency literals in derived
+# formulas) that still lack a proof atom citing a provision.
+# `axiom-encode proof-validate --require-money-atoms` fails when the
+# untracked missing count exceeds `total_allowed`. Burn this down; do
+# not raise it. Regenerate with `--emit-ratchet`.
+#
+# Seeded at 0: rulespec-et starts with no encoded monetary values, so
+# there is no backlog to tolerate. CI enforces a strict zero allowance
+# from the first encoded module onward — every monetary value must ship
+# with a proof atom citing a Ethiopia provision (the Income Tax Act
+# Cap 340 or an amending Act, the VAT or Excise Duty Acts, the NSSF
+# Act, the Local Governments Act, or official programme documentation).
+# This floor may only be lowered, never raised.
+total_allowed: 0

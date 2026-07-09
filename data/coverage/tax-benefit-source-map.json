@@ -1,0 +1,16 @@
+{
+  "generated_at": "2026-07-08",
+  "jurisdiction": "et",
+  "validation_year": "FY2025/26",
+  "note": "ETMOD UG_2025 active-instrument map to governing Ethiopia law. Instrument keys are the model's EUROMOD-convention policy names (structure metadata only; no licensed content). Source URLs are hunting grounds, not captured provenance - capture happens in axiom-corpus manifests.",
+  "instruments": [
+    {"instrument": "tin_ug (PAYE income tax)", "outputs": ["tin_s", "ttb_s"], "governing_law": "Income Tax Act (Cap 340), Third Schedule Part I (resident individual rates); s.19-22 employment income; annual amendment acts", "status": "not_captured"},
+    {"instrument": "tpr_ug (rental income tax)", "outputs": ["tpr_s"], "governing_law": "Income Tax Act (Cap 340) rental income regime (s.5(3), s.22(1)(c) as amended; 2021-2024 amendment acts changed rate and deduction structure)", "status": "not_captured"},
+    {"instrument": "ttn_ug (presumptive tax)", "outputs": ["ttn_s", "ttntb_s"], "governing_law": "Income Tax Act (Cap 340), s.4(5) + Second Schedule small-business taxpayer rates as amended", "status": "not_captured"},
+    {"instrument": "tscee_ug / tscer_ug (NSSF contributions)", "outputs": ["tscee_s", "tscer_s"], "governing_law": "National Social Security Fund Act (Cap 230), ss.11-12 (5% employee / 10% employer standard contributions); NSSF (Amendment) Act 2022", "status": "not_captured"},
+    {"instrument": "tgv_ug (Local Service Tax)", "outputs": ["tgv_s"], "governing_law": "Local Governments Act (Cap 243), Fifth Schedule Part(s) as amended by the Local Governments (Amendment) Act 2008 - graduated LST bands by income class", "status": "not_captured"},
+    {"instrument": "tva_ug (VAT)", "outputs": ["tva_s"], "governing_law": "Value Added Tax Act (Cap 349), s.24 standard rate (18%) + schedules for exempt/zero-rated supplies", "status": "not_captured"},
+    {"instrument": "tex_ug / tex01_ug (excise duties)", "outputs": ["tex01_s", "tex02_s"], "governing_law": "Excise Duty Act 2014, Schedule 2 as amended annually (per-litre and ad-valorem rows)", "status": "not_captured"},
+    {"instrument": "boa_ug (Senior Citizens Grant)", "outputs": ["boa_s"], "governing_law": "Administrative: Ministry of Gender, Labour and Social Development SAGE/SCG programme (Expanding Social Protection programme documentation)", "status": "not_captured"}
+  ]
+}
