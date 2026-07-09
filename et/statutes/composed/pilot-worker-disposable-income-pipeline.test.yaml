@@ -1,0 +1,74 @@
+# Companion fixtures for the composed monthly disposable-income
+# pipeline (rulespec-et#1 capstone). The imported tax reads the rate
+# module's monthly_employment_income and the imported pension share
+# reads the pension module's monthly_salary (imports do not rebind);
+# each case feeds the same gross to both. Hand arithmetic; the
+# 17,035.56 case reproduces the live ETMOD probes to the cent.
+
+- name: efy2025_nil_zone
+  # 1,500 gross: tax 0; pension 105; dispy 1,395.
+  period:
+    period_kind: month
+    start: '2025-08-01'
+    end: '2025-08-31'
+  input:
+    et:statutes/proc-1395-2025/income-tax-amendment-2025#input.monthly_employment_income: 1500
+    et:statutes/proc-715-2011/private-organization-employees-pension#input.monthly_salary: 1500
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+  output:
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 0
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 1395
+
+- name: efy2025_mid_income
+  # 10,000 gross: tax 1,650; pension 700; dispy 7,650.
+  period:
+    period_kind: month
+    start: '2025-08-01'
+    end: '2025-08-31'
+  input:
+    et:statutes/proc-1395-2025/income-tax-amendment-2025#input.monthly_employment_income: 10000
+    et:statutes/proc-715-2011/private-organization-employees-pension#input.monthly_salary: 10000
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+  output:
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 1650
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 7650
+
+- name: efy2025_probe_income
+  # 17,035.56 gross: tax 3,912.446; pension 1,192.4892; dispy 11,930.6248.
+  period:
+    period_kind: month
+    start: '2025-08-01'
+    end: '2025-08-31'
+  input:
+    et:statutes/proc-1395-2025/income-tax-amendment-2025#input.monthly_employment_income: 17035.56
+    et:statutes/proc-715-2011/private-organization-employees-pension#input.monthly_salary: 17035.56
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+  output:
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 3912.446
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 11930.6248
+
+- name: efy2025_with_benefits
+  # 10,000 + 500 benefits: dispy 8,150.
+  period:
+    period_kind: month
+    start: '2025-08-01'
+    end: '2025-08-31'
+  input:
+    et:statutes/proc-1395-2025/income-tax-amendment-2025#input.monthly_employment_income: 10000
+    et:statutes/proc-715-2011/private-organization-employees-pension#input.monthly_salary: 10000
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 500
+  output:
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 8150
+
+- name: efy2025_zero
+  period:
+    period_kind: month
+    start: '2025-08-01'
+    end: '2025-08-31'
+  input:
+    et:statutes/proc-1395-2025/income-tax-amendment-2025#input.monthly_employment_income: 0
+    et:statutes/proc-715-2011/private-organization-employees-pension#input.monthly_salary: 0
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+  output:
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 0
+    et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 0
