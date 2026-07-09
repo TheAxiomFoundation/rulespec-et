@@ -52,7 +52,7 @@ def iter_rulespec_files() -> list[Path]:
     return sorted(files)
 
 
-def test_only_uganda_namespace_present() -> None:
+def test_only_ethiopia_namespace_present() -> None:
     """Ethiopia is unitary: the only jurisdiction directory is et/."""
     names = {d.name for d in jurisdiction_dirs()}
     assert names <= {"et"}, f"unexpected jurisdiction dirs: {names - {'et'}}"
@@ -104,12 +104,12 @@ def test_money_atom_ratchet_is_nonnegative_int() -> None:
     assert isinstance(allowed, int) and allowed >= 0
 
 
-def test_oracle_index_is_ug_scoped() -> None:
+def test_oracle_index_is_et_scoped() -> None:
     payload = json.loads((ROOT / "data/oracles/oracle-index.json").read_text())
     assert payload["jurisdiction"] == "et"
 
 
-def test_source_map_is_ug_scoped() -> None:
+def test_source_map_is_et_scoped() -> None:
     payload = json.loads(
         (ROOT / "data/coverage/tax-benefit-source-map.json").read_text()
     )

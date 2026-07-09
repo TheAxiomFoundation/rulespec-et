@@ -1,36 +1,40 @@
 {
-  "generated_at": "2026-07-08",
+  "generated_at": "2026-07-09",
   "jurisdiction": "et",
-  "focus": "Ethiopia tax-benefit surface: national income tax (PAYE), rental income tax, presumptive small-business tax, NSSF contributions, Local Service Tax, VAT, excise duties, and the Senior Citizens Grant.",
+  "focus": "Ethiopia tax-benefit surface: employment and business income tax (with the minimum alternative tax), presumptive turnover tax, pension contributions, VAT, the urban and rural PSNP arms, school feeding and uniforms, and fuel subsidies.",
   "purpose": "Household-level comparison-oracle and supporting-source references for Ethiopia Axiom coverage. None of these are legal authority.",
   "oracle_scope": "A RuleSpec oracle must be an executable, pinned external calculator that accepts household-level inputs and returns household-level tax-benefit outputs comparable to Axiom outputs. Aggregate simulators, distributional reports, parameter documentation, and public model summaries are supporting references only, not oracles.",
   "oracles": [
     {
-      "id": "ugamod",
+      "id": "etmod",
       "name": "ETMOD",
-      "url": "https://www.wider.unu.edu/project/ugamod-tax-benefit-microsimulation-model-uganda",
+      "url": "https://www.wider.unu.edu/project/southmod-simulating-tax-and-benefit-policies-development",
       "local_path": "~/.axiom/oracles/southmod/bundle/SOUTHMOD_A4.0 (licensed, non-redistributable; never committed)",
       "commit": null,
       "model": "SOUTHMOD_A4.0",
-      "dataset": "ug_2016_a11.txt, ug_2020_a1.txt, ug_2024_a1.txt (UNHS-based input microdata shipped in the bundle)",
-      "role": "Household-level tax-benefit comparison oracle for Ethiopia. ETMOD is the SOUTHMOD tax-benefit microsimulation model for Ethiopia (UNU-WIDER, in collaboration with the Ministry of Finance, Planning and Economic Development). Built on the EUROMOD platform; systems UG_2016-UG_2025.",
+      "dataset": "et_2014_a4, et_2016_a5, et_2019_a2, et_2022_a2 (survey-based input microdata shipped in the bundle)",
+      "role": "Household-level tax-benefit comparison oracle for Ethiopia. ETMOD is the SOUTHMOD tax-benefit microsimulation model for Ethiopia (UNU-WIDER). Built on the EUROMOD platform; systems ET_2014-ET_2025.",
       "coverage": [
-        "personal_income_tax",
-        "paye",
-        "rental_income_tax",
-        "presumptive_tax",
-        "social_security_contributions",
-        "local_service_tax",
+        "employment_income_tax",
+        "business_income_tax",
+        "minimum_alternative_tax",
+        "presumptive_turnover_tax",
+        "pension_contributions",
         "vat",
-        "excise_duties",
-        "cash_transfers",
+        "psnp_public_works",
+        "psnp_direct_support",
+        "school_feeding_in_kind",
+        "school_uniforms_in_kind",
+        "fuel_subsidies",
         "household_disposable_income"
       ],
-      "authority": "bundle_in_hand_wiring_pending",
+      "authority": "wired_per_case_parity",
       "availability_check": {
-        "checked_at": "2026-07-08",
-        "status": "bundle_in_hand_wiring_pending",
-        "detail": "The licensed SOUTHMOD A4.0 bundle held under the Adhesion Agreement for the Ghana lane also carries ETMOD with systems UG_2016-UG_2025 and three bundled UNHS-based input datasets, so per-case and dataset-backed probes need no further data application (personal links; non-redistributable; the bundle and datasets must never be committed or shared). The EUROMOD-engine runtime is proven from the Ghana lane (x86_64 py3.12 venv + euromod 0.2.18 + x64 .NET 10). Oracle wiring (et: prefix mapping, UG country scope, per-case parity suites against UG_2025 = FY2025/26) follows the Ghana recipe; until wired, et: outputs remain classified not_comparable and parity tests stay deferred. The UG_2025 policy-surface inventory (23 policies, 9 active instruments) is recorded at ~/.axiom/oracles/southmod/harness-et/ugamod/inventory_result.json."
+        "checked_at": "2026-07-09",
+        "status": "wired_per_case_parity",
+        "detail": "The licensed SOUTHMOD A4.0 bundle held under the Adhesion Agreement for the Ghana lane also carries ETMOD with systems ET_2014-ET_2025 and four bundled survey-based input datasets, so per-case and dataset-backed probes need no further data application (personal links; non-redistributable; the bundle and datasets must never be committed or shared). The EUROMOD-engine runtime is proven from the Ghana lane (x86_64 py3.12 venv + euromod 0.2.18 + x64 .NET 10). Per-case parity suites run against ET_2025 (= EFY2025/26, carrying the Proclamation 1395/2025 schedules); the ET_2025/et_2022_a2 employment uprating factor is 1.7035555555555557 (probed). The ET_2025 policy-surface inventory is recorded at ~/.axiom/oracles/southmod/harness-et/etmod/inventory_result.json.",
+        "systems": "ET_2014-ET_2025",
+        "validation_system": "ET_2025 (EFY2025/26)"
       },
       "bundle_sha256": "741855bd23cf4c4a0a61a80def06a078fd3f0551a452b5853a2e46c7e2486a5f"
     }
