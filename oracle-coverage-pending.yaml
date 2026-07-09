@@ -8,8 +8,20 @@
 # Maintained by: axiom-encode oracle-coverage-pending sync.
 version: 1
 issue: https://github.com/TheAxiomFoundation/rulespec-et/issues/1
-ceiling: 47
+ceiling: 51
 entries:
+  - legal_id: et:programs/income-tax/efy-2025-26#pilot_worker_disposable_income
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:programs/income-tax/efy-2025-26#pilot_worker_income_tax
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax
+    source: manual
+    since: 2026-07-09
   - legal_id: et:statutes/proc-1341-2024/value-added-tax-proclamation#electricity_exempt_monthly_kwh
     source: manual
     since: 2026-07-09

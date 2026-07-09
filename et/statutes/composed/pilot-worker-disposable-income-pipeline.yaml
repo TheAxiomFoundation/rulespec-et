@@ -1,0 +1,71 @@
+format: rulespec/v1
+imports:
+  - et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_tax
+  - et:statutes/proc-715-2011/private-organization-employees-pension#private_employee_pension_contribution
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_paths:
+      - et/statute/proc-1395-2025/income-tax-amendment-2025
+      - et/statute/proc-715-2011/private-organization-employees-pension
+    upstream_source_check:
+      status: composed_from_grounded_modules
+      checked_paths:
+        - et/statute/proc-1395-2025/income-tax-amendment-2025
+        - et/statute/proc-715-2011/private-organization-employees-pension
+      rationale: |-
+        Composed identity over already-grounded modules: the Proclamation
+        No. 1395/2025 Article 11 monthly employment income tax (imported;
+        the statutory base is gross - Proclamation 979/2016 Article 10(3)
+        allows no employee deductions and Article 65(1)(c) exempts only
+        employer contributions) and the Proclamation No. 715/2011
+        Article 10 employee pension share (imported). Both engines apply
+        the schedule to the identical gross base, so the disposable-income
+        identity holds at every income.
+  summary: |-
+    Composed single-employee monthly disposable income for EFY2025/26,
+    mirroring the ETMOD identity: gross monthly employment income plus
+    benefits received, less the Article 11 employment income tax on
+    that income (gross base), less the employee's 7 percent pension
+    contribution.
+rules:
+  - name: pilot_worker_income_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Month
+    source: Imported Proclamation 1395/2025 Article 11 employment income tax on gross monthly employment income
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "2,001-4,000 15%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          employment_income_tax
+
+  - name: pilot_worker_disposable_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Month
+    source: Composed identity - gross employment income plus benefits less the imported income tax and the imported Article 10 employee pension share (7 percent)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-715-2011/private-organization-employees-pension
+              excerpt: "by the employee, 7%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          monthly_employment_income + max(0, benefits_received) - pilot_worker_income_tax - private_employee_pension_contribution

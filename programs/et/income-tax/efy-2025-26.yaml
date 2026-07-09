@@ -1,0 +1,22 @@
+# Ethiopia employment income tax -- EFY2025/26 (8 July 2025 - 7 July 2026)
+#
+# Composes the flagship gross-to-tax calculation (rulespec-et#1): the
+# Proclamation No. 1395/2025 Article 11 monthly employment schedule
+# applied to gross employment income (Proclamation 979/2016 Articles
+# 10(3) and 65(1)(c): no employee deduction), the Proclamation No.
+# 715/2011 employee pension share, and the composed disposable-income
+# identity for the single-employee surface. Business, presumptive, VAT
+# and the transfer programmes are separate program surfaces.
+
+program: et/income-tax
+period: '2025-08'
+
+outputs:
+  - pilot_worker_income_tax
+  - pilot_worker_disposable_income
+
+scope:
+  et:
+    - et/statutes/composed/pilot-worker-disposable-income-pipeline
+    - et/statutes/proc-1395-2025/income-tax-amendment-2025
+    - et/statutes/proc-715-2011/private-organization-employees-pension
