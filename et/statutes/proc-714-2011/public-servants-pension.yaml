@@ -1,0 +1,137 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
+  summary: |-
+    Public Servants' Pension Proclamation No. 714/2011, Articles 10 and 11 provide that pension contributions are based on the salary of the public servant: for the Civil Service Pension Fund, "by the public office, 11%" and "by the public servant, 7%"; for the Military and Police Service Pension Fund, "by the public office, 25%" and "by the public servant, 7%".
+rules:
+  - name: public_servant_pension_contribution_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 10(2) and Article 11(2)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
+              excerpt: "by the public servant, 7%"
+    versions:
+      - effective_from: '2011-06-24'
+        formula: |-
+          0.07
+
+  - name: civil_public_office_pension_contribution_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 10(1)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
+              excerpt: "by the public office, 11%"
+    versions:
+      - effective_from: '2011-06-24'
+        formula: |-
+          0.11
+
+  - name: military_police_public_office_pension_contribution_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 11(1)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
+              excerpt: "by the public office, 25%"
+    versions:
+      - effective_from: '2011-06-24'
+        formula: |-
+          0.25
+
+  - name: public_servant_pension_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: ETB
+    source: Article 10(2) and Article 11(2)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
+              excerpt: "The contributions payable ... shall, based on the salary of the public servant ... by the public servant, 7%."
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: et:statutes/proc-714-2011/public-servants-pension#public_servant_pension_contribution_rate
+              output: public_servant_pension_contribution_rate
+              hash: sha256:local
+    versions:
+      - effective_from: '2011-06-24'
+        formula: |-
+          public_servant_pension_contribution_rate * max(0, monthly_salary)
+
+  - name: public_office_pension_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: ETB
+    source: Article 10(1)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
+              excerpt: "The contributions payable to the Civil Service Pension Fund shall, based on the salary of the public servant, be: by the public office, 11%."
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: et:statutes/proc-714-2011/public-servants-pension#civil_public_office_pension_contribution_rate
+              output: civil_public_office_pension_contribution_rate
+              hash: sha256:local
+    versions:
+      - effective_from: '2011-06-24'
+        formula: |-
+          civil_public_office_pension_contribution_rate * max(0, monthly_salary)
+
+  - name: military_police_office_pension_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: ETB
+    source: Article 11(1)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
+              excerpt: "The contributions payable to the Military and Police Service Pension Fund shall, based on the salary of the public servant, be: by the public office, 25%."
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: et:statutes/proc-714-2011/public-servants-pension#military_police_public_office_pension_contribution_rate
+              output: military_police_public_office_pension_contribution_rate
+              hash: sha256:local
+    versions:
+      - effective_from: '2011-06-24'
+        formula: |-
+          military_police_public_office_pension_contribution_rate * max(0, monthly_salary)

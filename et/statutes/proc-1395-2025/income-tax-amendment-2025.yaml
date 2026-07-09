@@ -1,0 +1,612 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+    upstream_source_check:
+      status: checked_higher_authority
+      checked_paths:
+        - et/statute/proc-979-2016/federal-income-tax-proclamation
+      rationale: The amendment directly substitutes Article 11 of the Federal Income Tax Proclamation No. 979/2016; the principal act was checked for the employment-income base context, while the amended rates and thresholds are set by this statute.
+  summary: |-
+    Article 11 is deleted and replaced by “11. Employment Income Tax Rates”: monthly employment income is taxed at 0% for 0-2,000 Birr, 15% for 2,001-4,000, 20% for 4,001-7,000, 25% for 7,001-10,000, 30% for 10,001-14,000, and 35% over 14,000. Article 19 is likewise substituted with the annual business-income mirror schedule (0% to 24,000; 15% to 48,000; 20% to 84,000; 25% to 120,000; 30% to 168,000; 35% above). Article 50 sets the Category "B" gross-receipts (presumptive) schedule - 2% to 100,000; 3% to 500,000; 5% to 1,000,000; 7% to 1,500,000; 9% to less than 2,000,000 - applicable under the Article 49 total gross revenue tax regime (Article 3: Category "A" = a body or annual turnover exceeding Birr 2,000,000). Article 23 introduces the Minimum Alternative Tax: where tax payable falls below 2.5% of turnover the taxpayer pays a minimum tax of 2.5% of turnover, REDUCED by the business income tax paid (sub-article 3 - a floor), and the Article does not apply to taxpayers under the Article 49 gross revenue regime (sub-article 4). The effective-date article states that, subject to the special dates for alternative minimum tax and Schedule D/withholding, all other provisions apply to income derived as of July 8, 2025.
+rules:
+  - name: employment_income_zero_rate_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Month
+    source: Article 11 employment income tax table, row 0-2,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "0 -2,000 0%"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "income derived as of July’8/2025"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          2000
+
+  - name: employment_income_first_taxable_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Month
+    source: Article 11 employment income tax table, row 2,001-4,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "2,001-4,000 15%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          4000
+
+  - name: employment_income_second_taxable_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Month
+    source: Article 11 employment income tax table, row 4,001-7,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "4,001-7,000 20%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          7000
+
+  - name: employment_income_third_taxable_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Month
+    source: Article 11 employment income tax table, row 7,001-10,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "7,001-10,000 25%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          10000
+
+  - name: employment_income_fourth_taxable_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Month
+    source: Article 11 employment income tax table, row 10,001-14,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "10,001 -14,000 30%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          14000
+
+  - name: employment_income_first_taxable_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 11 employment income tax table, row 2,001-4,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "2,001-4,000 15%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.15
+
+  - name: employment_income_second_taxable_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 11 employment income tax table, row 4,001-7,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "4,001-7,000 20%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.20
+
+  - name: employment_income_third_taxable_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 11 employment income tax table, row 7,001-10,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "7,001-10,000 25%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.25
+
+  - name: employment_income_fourth_taxable_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 11 employment income tax table, row 10,001-14,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "10,001 -14,000 30%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.30
+
+  - name: employment_income_top_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 11 employment income tax table, row over 14,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "14,000 35%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.35
+
+  - name: employment_income_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Month
+    source: Article 11 employment income tax rates
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "The monthly rate of employment income tax is"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "income derived as of July’8/2025"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          employment_income_first_taxable_band_rate * max(0, min(monthly_employment_income, employment_income_first_taxable_band_upper_bound) - employment_income_zero_rate_upper_bound)
+          + employment_income_second_taxable_band_rate * max(0, min(monthly_employment_income, employment_income_second_taxable_band_upper_bound) - employment_income_first_taxable_band_upper_bound)
+          + employment_income_third_taxable_band_rate * max(0, min(monthly_employment_income, employment_income_third_taxable_band_upper_bound) - employment_income_second_taxable_band_upper_bound)
+          + employment_income_fourth_taxable_band_rate * max(0, min(monthly_employment_income, employment_income_fourth_taxable_band_upper_bound) - employment_income_third_taxable_band_upper_bound)
+          + employment_income_top_band_rate * max(0, monthly_employment_income - employment_income_fourth_taxable_band_upper_bound)
+
+  - name: business_income_first_taxable_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 19 business income tax table (annual), row 24,001-48,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "24,001-48,000 15%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          48000
+
+  - name: business_income_zero_rate_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 19 business income tax table (annual), row 0-24,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "0-24,000"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          24000
+
+  - name: business_income_second_taxable_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 19 business income tax table (annual), row 48,001-84,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "48,001-84,000 20%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          84000
+
+  - name: business_income_third_taxable_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 19 business income tax table (annual), row 84,001-120,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "84,001-120,000 25%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          120000
+
+  - name: business_income_fourth_taxable_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 19 business income tax table (annual), row 120,001-168,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "120,001-168,000 30%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          168000
+
+  - name: business_income_tax_scheduled
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 19 business income tax table (annual) applied to taxable business income
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "24,001-48,000 15% 48,001-84,000 20% 84,001-120,000 25% 120,001-168,000 30% Over 168,000 35%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          employment_income_first_taxable_band_rate * max(0, min(taxable_business_income, business_income_first_taxable_band_upper_bound) - business_income_zero_rate_upper_bound)
+          + employment_income_second_taxable_band_rate * max(0, min(taxable_business_income, business_income_second_taxable_band_upper_bound) - business_income_first_taxable_band_upper_bound)
+          + employment_income_third_taxable_band_rate * max(0, min(taxable_business_income, business_income_third_taxable_band_upper_bound) - business_income_second_taxable_band_upper_bound)
+          + employment_income_fourth_taxable_band_rate * max(0, min(taxable_business_income, business_income_fourth_taxable_band_upper_bound) - business_income_third_taxable_band_upper_bound)
+          + employment_income_top_band_rate * max(0, taxable_business_income - business_income_fourth_taxable_band_upper_bound)
+
+  - name: category_a_turnover_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 3 categories of taxpayers - Category "A" = a body or annual turnover exceeding Birr 2,000,000; Category "B" below it (the Article 49 gross revenue regime)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "Any other person whose annual turnover exceeds Birr 2,000,000 (two million birr)"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          2000000
+
+  - name: presumptive_first_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 50 gross-receipts schedule, row 0-100,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "0- 100,000 2%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          100000
+
+  - name: presumptive_second_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 50 gross-receipts schedule, row 100,001-500,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "100,001 — 500,000 3%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          500000
+
+  - name: presumptive_third_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 50 gross-receipts schedule, row 500,001-1,000,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "500,001 — 1,000,000 5%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          1000000
+
+  - name: presumptive_fourth_band_upper_bound
+    kind: parameter
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 50 gross-receipts schedule, row 1,000,001-1,500,000
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "1,000,001 — 1,500,000 7%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          1500000
+
+  - name: presumptive_first_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 50 gross-receipts schedule, 2% row
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "0- 100,000 2%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.02
+
+  - name: presumptive_second_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 50 gross-receipts schedule, 3% row
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "100,001 — 500,000 3%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.03
+
+  - name: presumptive_third_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 50 gross-receipts schedule, 5% row
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "500,001 — 1,000,000 5%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.05
+
+  - name: presumptive_fourth_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 50 gross-receipts schedule, 7% row
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "1,000,001 — 1,500,000 7%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.07
+
+  - name: presumptive_top_band_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 50 gross-receipts schedule, 9% row (1,500,001 to less than 2,000,000)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "1,500,001 — less than 2,000,000 | 9%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.09
+
+  - name: presumptive_gross_receipts_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 50 schedule under the Article 49 total gross revenue tax regime (Category "B" - annual gross receipts below the Category "A" bound)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "0- 100,000 2% 100,001 — 500,000 3% 500,001 — 1,000,000 5% 1,000,001 — 1,500,000 7%"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          if annual_gross_receipts <= category_a_turnover_bound: presumptive_first_band_rate * max(0, min(annual_gross_receipts, presumptive_first_band_upper_bound))
+          + presumptive_second_band_rate * max(0, min(annual_gross_receipts, presumptive_second_band_upper_bound) - presumptive_first_band_upper_bound)
+          + presumptive_third_band_rate * max(0, min(annual_gross_receipts, presumptive_third_band_upper_bound) - presumptive_second_band_upper_bound)
+          + presumptive_fourth_band_rate * max(0, min(annual_gross_receipts, presumptive_fourth_band_upper_bound) - presumptive_third_band_upper_bound)
+          + presumptive_top_band_rate * max(0, annual_gross_receipts - presumptive_fourth_band_upper_bound) else: 0
+
+  - name: minimum_alternative_tax_rate
+    kind: parameter
+    dtype: Rate
+    source: Article 23 Minimum Alternative Tax, sub-articles 1-2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "tax payable below 2.5% of the turnover in the same tax year the taxpayer shall pay a minimum tax"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          0.025
+
+  - name: minimum_alternative_tax_top_up
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 23 - the minimum tax (2.5% of turnover) is reduced by the business income tax paid (sub-article 3, a floor) and does not apply to Article 49 gross-revenue-regime taxpayers (sub-article 4)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "shall be reduced by business income tax under Article 18 paid in the tax year"
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "shall not apply to a taxpayer under the total gross revenue tax regime set out in Article 49"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          if annual_gross_receipts > category_a_turnover_bound: max(0, minimum_alternative_tax_rate * annual_gross_receipts - business_income_tax_scheduled) else: 0
+
+  - name: business_income_tax_payable
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 19 scheduled tax plus the Article 23 minimum-tax top-up (the statutory floor)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+              excerpt: "the taxpayer shall pay a minimum tax at a rate determined under sub-Article 2"
+    versions:
+      - effective_from: '2025-07-08'
+        formula: |-
+          business_income_tax_scheduled + minimum_alternative_tax_top_up

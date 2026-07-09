@@ -1,0 +1,84 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: et/statute/proc-715-2011/private-organization-employees-pension
+  summary: 'Proclamation No. 715/2011 establishes the Private Organizations Employees
+    Pension Scheme and Fund. Contributions are based on salary: employer 11% and employee
+    7%, subject to transitional phase-in. Retirement pension is payable for life after
+    at least 10 years of service at retirement age 60; the amount is 30% of average
+    salary for the last three years plus 1.25% for each year beyond 10, capped at
+    70%. Retirement gratuity applies when service is under 10 years. Invalidity, incapacity,
+    and survivor benefits are also prescribed, including survivor shares of 50% for
+    a widow or widower, 20% or 30% for children, and 15% or 20% for parents.'
+rules:
+- name: standard_employee_contribution_rate
+  kind: parameter
+  dtype: Rate
+  source: Article 10(2)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: et/statute/proc-715-2011/private-organization-employees-pension
+          excerpt: by the employee, 7%
+  versions:
+  - effective_from: '2011-06-24'
+    formula: '0.07'
+- name: standard_employer_contribution_rate
+  kind: parameter
+  dtype: Rate
+  source: Article 10(1)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: et/statute/proc-715-2011/private-organization-employees-pension
+          excerpt: by the employer, 11%
+  versions:
+  - effective_from: '2011-06-24'
+    formula: '0.11'
+- name: private_employee_pension_contribution
+  kind: derived
+  entity: Person
+  dtype: Money
+  unit: ETB
+  period: Month
+  source: Article 10 contributions based on the salary of the employee - the employee share
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: formula
+          source:
+            corpus_citation_path: et/statute/proc-715-2011/private-organization-employees-pension
+            excerpt: "by the employee, 7%"
+  versions:
+    - effective_from: '2011-06-24'
+      formula: |-
+        standard_employee_contribution_rate * max(0, monthly_salary)
+
+- name: private_employer_pension_contribution
+  kind: derived
+  entity: Person
+  dtype: Money
+  unit: ETB
+  period: Month
+  source: Article 10 contributions based on the salary of the employee - the employer share
+  metadata:
+    proof:
+      atoms:
+        - path: versions[0].formula
+          kind: formula
+          source:
+            corpus_citation_path: et/statute/proc-715-2011/private-organization-employees-pension
+            excerpt: "by the employer, 11%"
+  versions:
+    - effective_from: '2011-06-24'
+      formula: |-
+        standard_employer_contribution_rate * max(0, monthly_salary)

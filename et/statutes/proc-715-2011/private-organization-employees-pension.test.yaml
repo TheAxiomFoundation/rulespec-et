@@ -1,0 +1,35 @@
+# Companion fixtures for the Proclamation No. 715/2011 contribution
+# shares (rulespec-et#1 instruments 4-5, private organizations):
+# employee 7% and employer 11% of monthly salary (Article 10). The
+# 1,703.56 case reproduces the live ETMOD probe (tscee_s 119.25).
+
+- name: private_contributions_10000
+  period:
+    period_kind: month
+    start: '2025-08-01'
+    end: '2025-08-31'
+  input:
+    et:statutes/proc-715-2011/private-organization-employees-pension#input.monthly_salary: 10000
+  output:
+    et:statutes/proc-715-2011/private-organization-employees-pension#private_employee_pension_contribution: 700
+    et:statutes/proc-715-2011/private-organization-employees-pension#private_employer_pension_contribution: 1100
+
+- name: private_contributions_probe
+  period:
+    period_kind: month
+    start: '2025-08-01'
+    end: '2025-08-31'
+  input:
+    et:statutes/proc-715-2011/private-organization-employees-pension#input.monthly_salary: 1703.56
+  output:
+    et:statutes/proc-715-2011/private-organization-employees-pension#private_employee_pension_contribution: 119.2492
+
+- name: private_contributions_zero
+  period:
+    period_kind: month
+    start: '2025-08-01'
+    end: '2025-08-31'
+  input:
+    et:statutes/proc-715-2011/private-organization-employees-pension#input.monthly_salary: 0
+  output:
+    et:statutes/proc-715-2011/private-organization-employees-pension#private_employee_pension_contribution: 0

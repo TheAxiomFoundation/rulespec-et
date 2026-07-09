@@ -1,0 +1,67 @@
+# Companion fixtures for the VAT Proclamation No. 1341/2024 standard
+# rate and the Directive No. 1021/2024 domestic electricity/water
+# thresholds (rulespec-et#1 instrument 6). Hand arithmetic.
+
+- name: standard_rate_supply
+  period:
+    period_kind: tax_year
+    start: '2025-07-08'
+    end: '2026-07-07'
+  input:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.taxable_value: 1000
+  output:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#vat_amount: 150
+
+- name: electricity_above_threshold
+  period:
+    period_kind: tax_year
+    start: '2025-07-08'
+    end: '2026-07-07'
+  input:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.monthly_electricity_kwh: 300
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.electricity_expenditure: 1200
+  output:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#electricity_vat: 180
+
+- name: electricity_below_threshold
+  period:
+    period_kind: tax_year
+    start: '2025-07-08'
+    end: '2026-07-07'
+  input:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.monthly_electricity_kwh: 100
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.electricity_expenditure: 1200
+  output:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#electricity_vat: 0
+
+- name: water_above_threshold
+  period:
+    period_kind: tax_year
+    start: '2025-07-08'
+    end: '2026-07-07'
+  input:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.monthly_water_cubic_meters: 20
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.water_expenditure: 1200
+  output:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#water_vat: 180
+
+- name: water_below_threshold
+  period:
+    period_kind: tax_year
+    start: '2025-07-08'
+    end: '2026-07-07'
+  input:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.monthly_water_cubic_meters: 10
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.water_expenditure: 1200
+  output:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#water_vat: 0
+
+- name: zero_supply
+  period:
+    period_kind: tax_year
+    start: '2025-07-08'
+    end: '2026-07-07'
+  input:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#input.taxable_value: 0
+  output:
+    et:statutes/proc-1341-2024/value-added-tax-proclamation#vat_amount: 0

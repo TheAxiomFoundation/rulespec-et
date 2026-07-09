@@ -1,0 +1,150 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_paths:
+      - et/statute/proc-1341-2024/value-added-tax-proclamation
+      - et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - et/statute/proc-1341-2024/value-added-tax-proclamation
+        - et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+      rationale: |-
+        The 15 percent standard rate is set by Article 8 of the captured
+        Value Added Tax Proclamation No. 1341/2024 - the higher statutory
+        authority was checked first. The domestic electricity and water
+        exemption thresholds are prescribed by the Ministry of Finance
+        Directive No. 1021/2024, issued under the express delegation in
+        Article 1(m) of Annex 2 of the proclamation ("up to a monthly
+        consumption amount to be determined by a directive to be issued
+        by the Ministry"), captured from the Ministry of Finance's own
+        repository.
+  summary: |-
+    Value Added Tax Proclamation No. 1341/2024: Article 8 imposes VAT at
+    zero percent on zero-rated supplies and 15 percent in any other
+    case. Annex 2 Article 1(m) exempts domestic electric power and water
+    supply up to monthly consumption amounts determined by Ministry of
+    Finance directive; Directive No. 1021/2024 sets those thresholds at
+    200 kWh of monthly electricity consumption and 15 cubic meters of
+    monthly water consumption (excluding bottled water), with supplies
+    above the thresholds taxable. The proclamation's registration,
+    withholding, and administrative provisions are outside this
+    module's encoded surface.
+  deferred_outputs:
+    - output: et:statutes/proc-1341-2024/value-added-tax-proclamation/c#deemed_output_tax_on_unidentified_vat_amounts
+      reason: The paragraph treats certain amounts as output tax of a registered person for administration purposes; it depends on the proclamation's registration and invoicing framework, which is not part of the household tax-benefit surface ETMOD models.
+rules:
+  - name: standard_vat_rate
+    kind: parameter
+    dtype: Rate
+    source: et/statute/proc-1341-2024/value-added-tax-proclamation 8(2)(b)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: et/statute/proc-1341-2024/value-added-tax-proclamation
+              excerpt: "in any other case 15 percent"
+    versions:
+      - effective_from: '2024-08-21'
+        formula: |-
+          0.15
+
+  - name: electricity_exempt_monthly_kwh
+    kind: parameter
+    dtype: Count
+    period: Month
+    source: Ministry of Finance Directive No. 1021/2024, Article 2(1)(a), under Annex 2 Article 1(m) of the proclamation
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+              excerpt: "Monthly electricity consumption up to 200 kWh"
+    versions:
+      - effective_from: '2024-09-05'
+        formula: |-
+          200
+
+  - name: water_exempt_monthly_cubic_meters
+    kind: parameter
+    dtype: Count
+    period: Month
+    source: Ministry of Finance Directive No. 1021/2024, Article 2(1)(b)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+              excerpt: "Monthly water consumption up to 15 cubic meters (excluding bottled water)"
+    versions:
+      - effective_from: '2024-09-05'
+        formula: |-
+          15
+
+  - name: vat_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Article 8 - VAT at the standard rate on the taxable value of a supply
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/statute/proc-1341-2024/value-added-tax-proclamation
+              excerpt: "in any other case 15 percent"
+    versions:
+      - effective_from: '2024-08-21'
+        formula: |-
+          standard_vat_rate * max(0, taxable_value)
+
+  - name: electricity_vat
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Directive No. 1021/2024 Article 2(1)(a) - domestic electricity exempt up to 200 kWh of monthly consumption; supplies above the threshold taxable at the standard rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+              excerpt: "a) Monthly electricity consumption up to 200 kWh"
+    versions:
+      - effective_from: '2024-09-05'
+        formula: |-
+          if monthly_electricity_kwh > electricity_exempt_monthly_kwh: standard_vat_rate * max(0, electricity_expenditure) else: 0
+
+  - name: water_vat
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ETB
+    period: Year
+    source: Directive No. 1021/2024 Article 2(1)(b) - domestic water exempt up to 15 cubic meters of monthly consumption (excluding bottled water); supplies above the threshold taxable at the standard rate
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+              excerpt: "b) Monthly water consumption up to 15 cubic meters (excluding bottled water)"
+    versions:
+      - effective_from: '2024-09-05'
+        formula: |-
+          if monthly_water_cubic_meters > water_exempt_monthly_cubic_meters: standard_vat_rate * max(0, water_expenditure) else: 0
