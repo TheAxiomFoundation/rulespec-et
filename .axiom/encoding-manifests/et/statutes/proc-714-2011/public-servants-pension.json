@@ -1,0 +1,42 @@
+{
+  "applied_files": [
+    {
+      "path": "et/statutes/proc-714-2011/public-servants-pension.test.yaml",
+      "sha256": "a2e07c6e34f0b9882274fa9a86f9d6b753cdd57e3e5cfd11328e240291ede338"
+    },
+    {
+      "path": "et/statutes/proc-714-2011/public-servants-pension.yaml",
+      "sha256": "a33a633721b42f9931a7cc14ad0c7f3ea260083e45abc50f394722c5c502d219"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "55beb1607ee5b4c3ea285437118a9716e6de4939",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode",
+    "version": "0.2.1197",
+    "version_commit": "55beb1607ee5b4c3ea285437118a9716e6de4939"
+  },
+  "axiom_encode_version": "0.2.1197",
+  "backend": "manual",
+  "citation": "et:statutes/proc-714-2011/public-servants-pension",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-09T07:30:18.875001+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp7yfnz9jz/sign-applied-files/et/statutes/proc-714-2011/public-servants-pension.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp7yfnz9jz",
+  "generated_output_sha256": "a33a633721b42f9931a7cc14ad0c7f3ea260083e45abc50f394722c5c502d219",
+  "generation_prompt_sha256": null,
+  "manual_exception": "#1",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "38c777ebc3180cc905a22b8aceaee78bf7593f68db633e2d414e8310915b1f61"
+  },
+  "tool": "axiom-encode sign-applied-files",
+  "trace_file": null,
+  "trace_sha256": null
+}

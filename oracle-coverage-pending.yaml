@@ -1,0 +1,153 @@
+# Declared oracle-coverage debt: executable RuleSpec outputs awaiting
+# classification in axiom-oracles PolicyEngine mappings. The
+# oracle-coverage gate treats these as pending_classification (visible,
+# counted, accountable) instead of silently unmapped. Ratchets both
+# ways (see the oracle-coverage-pending CI check): a new unmapped output
+# must be declared here or the gate fails; an entry that is no longer
+# unmapped (classified upstream) must be removed or the check fails.
+# Maintained by: axiom-encode oracle-coverage-pending sync.
+version: 1
+issue: https://github.com/TheAxiomFoundation/rulespec-et/issues/1
+ceiling: 47
+entries:
+  - legal_id: et:statutes/proc-1341-2024/value-added-tax-proclamation#electricity_exempt_monthly_kwh
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1341-2024/value-added-tax-proclamation#electricity_vat
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1341-2024/value-added-tax-proclamation#standard_vat_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1341-2024/value-added-tax-proclamation#vat_amount
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1341-2024/value-added-tax-proclamation#water_exempt_monthly_cubic_meters
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1341-2024/value-added-tax-proclamation#water_vat
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#business_income_first_taxable_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#business_income_fourth_taxable_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#business_income_second_taxable_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#business_income_tax_payable
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#business_income_tax_scheduled
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#business_income_third_taxable_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#business_income_zero_rate_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#category_a_turnover_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_first_taxable_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_first_taxable_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_fourth_taxable_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_fourth_taxable_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_second_taxable_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_second_taxable_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_tax
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_third_taxable_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_third_taxable_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_top_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_zero_rate_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#minimum_alternative_tax_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#minimum_alternative_tax_top_up
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_first_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_first_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_fourth_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_fourth_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_gross_receipts_tax
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_second_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_second_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_third_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_third_band_upper_bound
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_top_band_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-714-2011/public-servants-pension#civil_public_office_pension_contribution_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-714-2011/public-servants-pension#military_police_office_pension_contribution
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-714-2011/public-servants-pension#military_police_public_office_pension_contribution_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-714-2011/public-servants-pension#public_office_pension_contribution
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-714-2011/public-servants-pension#public_servant_pension_contribution
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-714-2011/public-servants-pension#public_servant_pension_contribution_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-715-2011/private-organization-employees-pension#private_employee_pension_contribution
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-715-2011/private-organization-employees-pension#private_employer_pension_contribution
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-715-2011/private-organization-employees-pension#standard_employee_contribution_rate
+    source: manual
+    since: 2026-07-09
+  - legal_id: et:statutes/proc-715-2011/private-organization-employees-pension#standard_employer_contribution_rate
+    source: manual
+    since: 2026-07-09

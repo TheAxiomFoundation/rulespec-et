@@ -1,0 +1,42 @@
+{
+  "applied_files": [
+    {
+      "path": "et/statutes/proc-1341-2024/value-added-tax-proclamation.test.yaml",
+      "sha256": "bcdf0cb09208e16485b2001f2c4b6efa5605cc21351b08e1d3977c578c625446"
+    },
+    {
+      "path": "et/statutes/proc-1341-2024/value-added-tax-proclamation.yaml",
+      "sha256": "4d5a0edbbefe60edd0ca100942f0349a200d51ec69b5a4996cd38b1526488a2b"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "55beb1607ee5b4c3ea285437118a9716e6de4939",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode",
+    "version": "0.2.1197",
+    "version_commit": "55beb1607ee5b4c3ea285437118a9716e6de4939"
+  },
+  "axiom_encode_version": "0.2.1197",
+  "backend": "manual",
+  "citation": "et:statutes/proc-1341-2024/value-added-tax-proclamation",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-09T07:30:18.873869+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp7yfnz9jz/sign-applied-files/et/statutes/proc-1341-2024/value-added-tax-proclamation.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp7yfnz9jz",
+  "generated_output_sha256": "4d5a0edbbefe60edd0ca100942f0349a200d51ec69b5a4996cd38b1526488a2b",
+  "generation_prompt_sha256": null,
+  "manual_exception": "#1",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "d0965705809a631467c18e7f7bd50255cfcab34eec61632cb8000fb473589f0c"
+  },
+  "tool": "axiom-encode sign-applied-files",
+  "trace_file": null,
+  "trace_sha256": null
+}

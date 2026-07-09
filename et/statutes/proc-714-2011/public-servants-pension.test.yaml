@@ -1,0 +1,24 @@
+- name: salary_10000_contributions
+  period: 2011-07
+  input:
+    et:statutes/proc-714-2011/public-servants-pension#input.monthly_salary: 10000
+  output:
+    et:statutes/proc-714-2011/public-servants-pension#public_servant_pension_contribution: 700
+    et:statutes/proc-714-2011/public-servants-pension#public_office_pension_contribution: 1100
+    et:statutes/proc-714-2011/public-servants-pension#military_police_office_pension_contribution: 2500
+- name: zero_salary_contributions
+  period: 2011-07
+  input:
+    et:statutes/proc-714-2011/public-servants-pension#input.monthly_salary: 0
+  output:
+    et:statutes/proc-714-2011/public-servants-pension#public_servant_pension_contribution: 0
+    et:statutes/proc-714-2011/public-servants-pension#public_office_pension_contribution: 0
+    et:statutes/proc-714-2011/public-servants-pension#military_police_office_pension_contribution: 0
+- name: negative_salary_floored_contributions
+  period: 2011-07
+  input:
+    et:statutes/proc-714-2011/public-servants-pension#input.monthly_salary: -100
+  output:
+    et:statutes/proc-714-2011/public-servants-pension#public_servant_pension_contribution: 0
+    et:statutes/proc-714-2011/public-servants-pension#public_office_pension_contribution: 0
+    et:statutes/proc-714-2011/public-servants-pension#military_police_office_pension_contribution: 0
