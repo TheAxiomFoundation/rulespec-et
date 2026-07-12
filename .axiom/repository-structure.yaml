@@ -4,7 +4,7 @@ allowed_root_directories:
   - .github
   - bulk
   - data
-  - programs
+  - et/programs
   - tests
   - et
 allowed_root_files:
@@ -43,7 +43,7 @@ path_rules:
       - ".yaml"
       - ".yml"
   - patterns:
-      - "programs/**"
+      - "et/programs/**"
     allow_extensions:
       - ".yaml"
   - patterns:
