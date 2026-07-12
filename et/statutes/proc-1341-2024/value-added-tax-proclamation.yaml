@@ -3,24 +3,7 @@ module:
   proof_validation:
     required: true
   source_verification:
-    corpus_citation_paths:
-      - et/statute/proc-1341-2024/value-added-tax-proclamation
-      - et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - et/statute/proc-1341-2024/value-added-tax-proclamation
-        - et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
-      rationale: |-
-        The 15 percent standard rate is set by Article 8 of the captured
-        Value Added Tax Proclamation No. 1341/2024 - the higher statutory
-        authority was checked first. The domestic electricity and water
-        exemption thresholds are prescribed by the Ministry of Finance
-        Directive No. 1021/2024, issued under the express delegation in
-        Article 1(m) of Annex 2 of the proclamation ("up to a monthly
-        consumption amount to be determined by a directive to be issued
-        by the Ministry"), captured from the Ministry of Finance's own
-        repository.
+    corpus_citation_path: et/statute/proc-1341-2024/value-added-tax-proclamation
   summary: |-
     Value Added Tax Proclamation No. 1341/2024: Article 8 imposes VAT at
     zero percent on zero-rated supplies and 15 percent in any other

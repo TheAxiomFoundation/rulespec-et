@@ -72,7 +72,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
-              excerpt: "The contributions payable ... shall, based on the salary of the public servant ... by the public servant, 7%."
+              excerpt: "The contributions payable to the Civil Service Pension Fund shall, based on the salary of the public servant, be:\n\n1/ by the public office, 11%;\n\n2/ by the public servant, 7%."
           - path: versions[0].formula
             kind: import
             import:
@@ -98,7 +98,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
-              excerpt: "The contributions payable to the Civil Service Pension Fund shall, based on the salary of the public servant, be: by the public office, 11%."
+              excerpt: "The contributions payable to the Civil Service Pension Fund shall, based on the salary of the public servant, be:\n\n1/ by the public office, 11%;"
           - path: versions[0].formula
             kind: import
             import:
@@ -124,7 +124,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: et/statute/proc-714-2011/public-servants-pension
-              excerpt: "The contributions payable to the Military and Police Service Pension Fund shall, based on the salary of the public servant, be: by the public office, 25%."
+              excerpt: "The contributions payable to the Military and Police Service Pension Fund shall, based on the salary of the public servant, be:\n\n1/ by the public office, 25%;"
           - path: versions[0].formula
             kind: import
             import:
