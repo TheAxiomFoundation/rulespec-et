@@ -6,23 +6,7 @@ module:
   proof_validation:
     required: true
   source_verification:
-    corpus_citation_paths:
-      - et/statute/proc-1395-2025/income-tax-amendment-2025
-      - et/statute/proc-715-2011/private-organization-employees-pension
-    upstream_source_check:
-      status: composed_from_grounded_modules
-      checked_paths:
-        - et/statute/proc-1395-2025/income-tax-amendment-2025
-        - et/statute/proc-715-2011/private-organization-employees-pension
-      rationale: |-
-        Composed identity over already-grounded modules: the Proclamation
-        No. 1395/2025 Article 11 monthly employment income tax (imported;
-        the statutory base is gross - Proclamation 979/2016 Article 10(3)
-        allows no employee deductions and Article 65(1)(c) exempts only
-        employer contributions) and the Proclamation No. 715/2011
-        Article 10 employee pension share (imported). Both engines apply
-        the schedule to the identical gross base, so the disposable-income
-        identity holds at every income.
+    corpus_citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
   summary: |-
     Composed single-employee monthly disposable income for EFY2025/26,
     mirroring the ETMOD identity: gross monthly employment income plus
