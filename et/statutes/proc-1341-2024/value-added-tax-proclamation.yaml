@@ -16,8 +16,16 @@ module:
     withholding, and administrative provisions are outside this
     module's encoded surface.
   deferred_outputs:
+    - output: et:statutes/proc-1341-2024/value-added-tax-proclamation/a#voucher_redemption_consideration_excluding_tax_fraction
+      reason: The paragraph allocates a redeemed voucher amount between consideration and VAT using the proclamation's tax-fraction mechanics; voucher redemption and transaction-level consideration are not modeled by this module's general VAT-rate and household electricity-and-water surface.
     - output: et:statutes/proc-1341-2024/value-added-tax-proclamation/c#deemed_output_tax_on_unidentified_vat_amounts
       reason: The paragraph treats certain amounts as output tax of a registered person for administration purposes; it depends on the proclamation's registration and invoicing framework, which is not part of the household tax-benefit surface ETMOD models.
+    - output: et:statutes/proc-1341-2024/value-added-tax-proclamation/d#registration_input_tax_credit_documentary_evidence
+      reason: The paragraph requires a newly registered person to substantiate input tax paid on a creditable acquisition with a tax invoice or other evidence satisfactory to the Tax Authority; registration, acquisition-level input credits, and evidentiary administration are outside this module's encoded surface.
+    - output: et:statutes/proc-1341-2024/value-added-tax-proclamation/e#electromagnetic_product_transmission_as_supply_of_services
+      reason: The paragraph classifies product transmission by wire, cable, radio, optical, or similar electromagnetic systems as a supply of services; that distinct telecommunications supply category and its transaction base are not modeled by this module's general VAT-rate and household electricity-and-water surface.
+    - output: et:statutes/proc-1341-2024/value-added-tax-proclamation/f#telecommunications_service_place_of_supply_by_mobile_country_code
+      reason: The paragraph determines an Ethiopian place of supply for telecommunications services from the subscriber identity module's mobile country code, subject to paragraph (e); telecommunications place-of-supply rules and subscriber data are not modeled by this module.
 rules:
   - name: standard_vat_rate
     kind: parameter
