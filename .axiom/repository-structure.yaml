@@ -5,6 +5,7 @@ allowed_root_directories:
   - bulk
   - data
   - et/programs
+  - docs
   - tests
   - et
 allowed_root_files:
