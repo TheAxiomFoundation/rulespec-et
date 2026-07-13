@@ -48,6 +48,10 @@ path_rules:
     allow_extensions:
       - ".yaml"
   - patterns:
+      - "docs/**"
+    allow_extensions:
+      - ".md"
+  - patterns:
       - "tests/**"
     allow_extensions:
       - ".py"
