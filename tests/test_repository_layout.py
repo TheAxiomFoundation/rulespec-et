@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 JURISDICTION_DIR_RE = re.compile(r"^[a-z]{2}(-[a-z0-9-]+)*$")
 CONTENT_DIRS = ("statutes", "regulations", "policies", "legislation")
 IGNORED_DIRS = {".git", ".pytest_cache", ".ruff_cache", ".venv", "__pycache__"}
-ALLOWED_ROOT_DIRS = {".axiom", ".github", "bulk", "data", "programs", "tests", "et"}
+ALLOWED_ROOT_DIRS = {".axiom", ".github", "bulk", "data", "docs", "tests", "et"}
 ALLOWED_ROOT_FILES = {
     ".gitignore",
     "CLAUDE.md",
