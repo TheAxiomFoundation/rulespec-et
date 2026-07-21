@@ -1,0 +1,110 @@
+{
+  "applied_files": [
+    {
+      "path": "et/regulations/dir-1021-2024/vat-electricity-water-exemption-directive.yaml",
+      "sha256": "43a844c48e3846a48a96fa97704849dadeceaf55a65091faae9a0ade157b8a6a"
+    },
+    {
+      "path": "et/regulations/dir-1021-2024/vat-electricity-water-exemption-directive.test.yaml",
+      "sha256": "72e43f47040e51ecbe43899dcc5d93cd1841b680adaddc1951ed4496f7da1734"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76",
+    "dirty_tracked": false,
+    "identity_source": "trusted-runtime-attestation",
+    "root": "/opt/axiom-verification/python/runtime-attestation.json",
+    "version": "0.2.1302",
+    "version_commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76"
+  },
+  "axiom_encode_version": "0.2.1302",
+  "backend": "openai",
+  "citation": "et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive",
+  "context_manifest_file": "/tmp/axiom-encode-encodings/_eval_workspaces/openai-gpt-5.6-terra/et-regulation-dir-1021-2024-vat-electricity-water-exemption-directive/workspace/context-manifest.json",
+  "context_manifest_sha256": "4db51051da37dd07462927e057f76cc5f8de7be69550fba1df422efdb05a11f4",
+  "generated_at": "2026-07-21T16:08:27.612350+00:00",
+  "generated_output_file": "/tmp/axiom-encode-encodings/openai-gpt-5.6-terra/regulations/dir-1021-2024/vat-electricity-water-exemption-directive.yaml",
+  "generated_output_root": "/tmp/axiom-encode-encodings",
+  "generated_output_sha256": "43a844c48e3846a48a96fa97704849dadeceaf55a65091faae9a0ade157b8a6a",
+  "generation_prompt_sha256": "6e26f7400b177fa8a32270be46ca41fe2450c02fac4aad25c8ac820e82f2f539",
+  "model": "gpt-5.6-terra",
+  "run_id": "27c938d0",
+  "runner": "openai-gpt-5.6-terra",
+  "schema_version": "axiom-encode/applied-rulespec/v5",
+  "signature": {
+    "algorithm": "ed25519-domain-v1",
+    "key_id": "sha256:24a78725a23b1c83cfc38bdc22f75401d8008e7a8477796b55179d1fc79c4d9a",
+    "value": "izuzU9yHXs3JZgofMuN3Z/Yd35xeX6byM8QIuMbiNM32ZXAckbCCmD4kci/z0zcGVkzxKERuq3ZQJ1FMPliuAQ=="
+  },
+  "source_attestation": {
+    "component_rows": [
+      {
+        "body_sha256": "91c7b7d78591f8421caecda56274e67b5a44a8bf0704b5ae0cfd6a810e95124b",
+        "citation_path": "et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive/document-1",
+        "document_class": "regulation",
+        "expression_date": "2024-09-05",
+        "jurisdiction": "et",
+        "line_number": 4,
+        "provision_file": "data/corpus/provisions/et/regulation/2026-07-09-et-income-tax-and-vat-regulations.jsonl",
+        "provision_file_sha256": "d1fc5a1e93206fa8878037d9f3fa011b82594bf32d63e34aa6fb36ceab0a30a0",
+        "record_id": "83c5312e-8a70-5a35-b94f-f9ef8b5d39fd",
+        "source_as_of": "2026-07-09",
+        "source_path": "sources/et/regulation/2026-07-09-et-income-tax-and-vat-regulations/official-documents/et-dir-1021-2024-vat-electricity-water-exemption.pdf",
+        "version": "2026-07-09-et-income-tax-and-vat-regulations"
+      }
+    ],
+    "corpus_release": "et-rulespec-2026-07-12",
+    "corpus_release_content_sha256": "0b5e014b06dc09d145600efcdea463a614cdea99925e98a8acc30adf65cc93db",
+    "corpus_release_selector_sha256": "8fc9705f65a158df1cd32a0b3c0b344e027a54430d82fd6fd842f15b2e575306",
+    "corpus_source": "local",
+    "expression_date": "2024-09-05",
+    "generation_input_sha256": "91c7b7d78591f8421caecda56274e67b5a44a8bf0704b5ae0cfd6a810e95124b",
+    "provision_file": "data/corpus/provisions/et/regulation/2026-07-09-et-income-tax-and-vat-regulations.jsonl",
+    "provision_file_sha256": "d1fc5a1e93206fa8878037d9f3fa011b82594bf32d63e34aa6fb36ceab0a30a0",
+    "requested_corpus_citation_path": "et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive",
+    "resolved_corpus_citation_path": "et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive",
+    "resolved_text_sha256": "91c7b7d78591f8421caecda56274e67b5a44a8bf0704b5ae0cfd6a810e95124b",
+    "row": {
+      "body_sha256": null,
+      "citation_path": "et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive",
+      "document_class": "regulation",
+      "expression_date": "2024-09-05",
+      "jurisdiction": "et",
+      "line_number": 3,
+      "provision_file": "data/corpus/provisions/et/regulation/2026-07-09-et-income-tax-and-vat-regulations.jsonl",
+      "provision_file_sha256": "d1fc5a1e93206fa8878037d9f3fa011b82594bf32d63e34aa6fb36ceab0a30a0",
+      "record_id": "7862be40-cfea-5671-ac94-e56981aa9eb5",
+      "source_as_of": "2026-07-09",
+      "source_path": "sources/et/regulation/2026-07-09-et-income-tax-and-vat-regulations/official-documents/et-dir-1021-2024-vat-electricity-water-exemption.pdf",
+      "version": "2026-07-09-et-income-tax-and-vat-regulations"
+    },
+    "rulespec_root": "rulespec-et/et",
+    "source_as_of": "2026-07-09",
+    "source_sha256": "91c7b7d78591f8421caecda56274e67b5a44a8bf0704b5ae0cfd6a810e95124b"
+  },
+  "tool": "axiom-encode encode --apply",
+  "trace_file": "/tmp/axiom-encode-encodings/traces/openai-gpt-5.6-terra/et-regulation-dir-1021-2024-vat-electricity-water-exemption-directive.json",
+  "trace_sha256": "cbf2ea7b89cd02da2535e1202214f228028fdf179c82109861e4898c7fe73c8f",
+  "validation_execution": {
+    "axiom_encode": {
+      "commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76",
+      "identity_source": "trusted-runtime-attestation",
+      "repository": "github.com/TheAxiomFoundation/axiom-encode",
+      "version": "0.2.1302"
+    },
+    "axiom_rules_engine": {
+      "commit": "05eac9d2f89dabe5c6673176260762cef3a58f47",
+      "repository": "github.com/TheAxiomFoundation/axiom-rules-engine"
+    },
+    "policy_pre_apply": {
+      "pre_apply_content_sha256": "ecc268c3435ecabbad21bf1604b7551f5d02c54c1ae78542541422b41169c494",
+      "pre_apply_file_count": 14,
+      "rulespec_root": "rulespec-et/et",
+      "toolchain_contract_sha256": "00bda402c23e016f9ee6aef86d65578aaf85c0debbbeab6c80138ecf849e77f5",
+      "validation_waiver_set_sha256": "91e6afd2bfe55535ecd32d0a537ab94e00fffd1ce2d7371c09f5cda8b3c88882"
+    },
+    "rulespec_dependencies": [],
+    "schema": "axiom-encode/apply-validation-execution/v1"
+  },
+  "validation_waiver_set_sha256": "91e6afd2bfe55535ecd32d0a537ab94e00fffd1ce2d7371c09f5cda8b3c88882"
+}

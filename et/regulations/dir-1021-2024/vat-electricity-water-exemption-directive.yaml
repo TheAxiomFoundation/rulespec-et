@@ -1,0 +1,123 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+    source_sha256: 91c7b7d78591f8421caecda56274e67b5a44a8bf0704b5ae0cfd6a810e95124b
+  summary: “Monthly electricity consumption up to 200 kWh” and “Monthly water consumption
+    up to 15 cubic meters (excluding bottled water)” for domestic use are exempt from
+    Value Added Tax. Suppliers involved in generation and transmission must collect
+    VAT on wholesale electricity supplied.
+rules:
+- name: domestic_electricity_vat_exempt_monthly_consumption_limit
+  kind: parameter
+  dtype: Decimal
+  period: Month
+  source: Directive No. 1021/2024, Article 2(1)(a)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: amount
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: Monthly electricity consumption up to 200 kWh
+      - path: versions[0].formula
+        kind: unit
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: 200 kWh
+  versions:
+  - effective_from: '0001-01-01'
+    formula: '200'
+- name: domestic_water_vat_exempt_monthly_consumption_limit
+  kind: parameter
+  dtype: Decimal
+  period: Month
+  source: Directive No. 1021/2024, Article 2(1)(b)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: amount
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: Monthly water consumption up to 15 cubic meters
+      - path: versions[0].formula
+        kind: unit
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: 15 cubic meters
+  versions:
+  - effective_from: '0001-01-01'
+    formula: '15'
+- name: electricity_consumption_exempt_from_vat
+  kind: derived
+  entity: Payment
+  dtype: Decimal
+  period: Month
+  source: Directive No. 1021/2024, Article 2(1)(a) and Article 2(2)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: The following supplies of electricity and water for domestic use
+            are exempt from Value Added Tax
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: for domestic use
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: collect Value Added Tax on wholesale electricity supplied
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: Monthly electricity consumption up to 200 kWh
+  versions:
+  - effective_from: '0001-01-01'
+    formula: "if electricity_supply_is_for_domestic_use and not electricity_is_wholesale_supplied_by_generation_or_transmission_supplier:\n\
+      \  min(monthly_electricity_consumption, domestic_electricity_vat_exempt_monthly_consumption_limit)\n\
+      else: 0"
+- name: water_consumption_exempt_from_vat
+  kind: derived
+  entity: Payment
+  dtype: Decimal
+  period: Month
+  source: Directive No. 1021/2024, Article 2(1)(b)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: The following supplies of electricity and water for domestic use
+            are exempt from Value Added Tax
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: for domestic use
+      - path: versions[0].formula
+        kind: exception
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: excluding bottled water
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive
+          excerpt: Monthly water consumption up to 15 cubic meters
+  versions:
+  - effective_from: '0001-01-01'
+    formula: "if water_supply_is_for_domestic_use and not water_is_bottled:\n  min(monthly_water_consumption,\
+      \ domestic_water_vat_exempt_monthly_consumption_limit)\nelse: 0"

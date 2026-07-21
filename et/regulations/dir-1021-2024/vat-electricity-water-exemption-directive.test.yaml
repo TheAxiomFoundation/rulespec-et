@@ -1,0 +1,52 @@
+- name: domestic_supplies_receive_exemption_up_to_monthly_limits
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.electricity_supply_is_for_domestic_use: true
+    ? et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.electricity_is_wholesale_supplied_by_generation_or_transmission_supplier
+    : false
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.monthly_electricity_consumption: 250
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.water_supply_is_for_domestic_use: true
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.water_is_bottled: false
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.monthly_water_consumption: 20
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#electricity_consumption_exempt_from_vat: 200
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#water_consumption_exempt_from_vat: 15
+- name: wholesale_electricity_is_not_exempt
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.electricity_supply_is_for_domestic_use: true
+    ? et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.electricity_is_wholesale_supplied_by_generation_or_transmission_supplier
+    : true
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.monthly_electricity_consumption: 200
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.water_supply_is_for_domestic_use: true
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.water_is_bottled: false
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.monthly_water_consumption: 15
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#electricity_consumption_exempt_from_vat: 0
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#water_consumption_exempt_from_vat: 15
+- name: bottled_water_is_not_exempt
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.electricity_supply_is_for_domestic_use: true
+    ? et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.electricity_is_wholesale_supplied_by_generation_or_transmission_supplier
+    : false
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.monthly_electricity_consumption: 200
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.water_supply_is_for_domestic_use: true
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.water_is_bottled: true
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.monthly_water_consumption: 15
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#electricity_consumption_exempt_from_vat: 200
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#water_consumption_exempt_from_vat: 0
+- name: non_domestic_supplies_are_not_exempt
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.electricity_supply_is_for_domestic_use: false
+    ? et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.electricity_is_wholesale_supplied_by_generation_or_transmission_supplier
+    : false
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.monthly_electricity_consumption: 200
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.water_supply_is_for_domestic_use: false
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.water_is_bottled: false
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.monthly_water_consumption: 15
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#electricity_consumption_exempt_from_vat: 0
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#water_consumption_exempt_from_vat: 0
