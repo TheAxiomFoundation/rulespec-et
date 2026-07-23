@@ -1,0 +1,23 @@
+- name: domestic consumption below monthly exemption limits
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.domestic_electricity_consumption: 150
+    ? et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.domestic_water_consumption_excluding_bottled_water
+    : 10
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#domestic_electricity_consumption_exempt_from_vat: 150
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#domestic_water_consumption_exempt_from_vat: 10
+- name: domestic consumption is limited to monthly exemption thresholds
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.domestic_electricity_consumption: 250
+    ? et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.domestic_water_consumption_excluding_bottled_water
+    : 20
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#domestic_electricity_consumption_exempt_from_vat: 200
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#domestic_water_consumption_exempt_from_vat: 15
+- name: wholesale electricity supply is not exempt
+  period: 2024-09
+  input: {}
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#wholesale_electricity_supply_exempt_from_vat: not_holds
