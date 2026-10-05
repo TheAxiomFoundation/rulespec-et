@@ -15,8 +15,8 @@ This repo stores Ethiopia RuleSpec source registry materials, oracle references,
 - Start from the furthest upstream source: Federal Negarit Gazeta proclamation prints first (bilingual; the English text is citable — record whether a mirror host served the facsimile), Council of Ministers regulations next, Ministry of Revenues directives and programme manuals only after the governing proclamation is identified.
 - Add RuleSpec under `et/statutes/`, `et/regulations/`, or `et/policies/` with companion `.test.yaml` files.
 - Cite corpus paths from modules via `module.source_verification.corpus_citation_path` (or `corpus_citation_paths`).
-- Use EFY2025/26 as the validation year (Ethiopia's fiscal year runs 8 July–7 July; ETMOD system ET_2025 corresponds to it, carrying the Proclamation 1395/2025 schedules effective July 2025). Indexed/annual values must be corpus-grounded, never invented.
-- Keep exact oracle versions in `data/oracles/oracle-index.json`. The ETMOD bundle (SOUTHMOD A4.0) is licensed and non-redistributable — never commit bundle bytes, dataset rows, or model XML; only comparison statistics and ETMOD-produced values may be recorded.
+- Use EFY2025/26 as the validation year (Ethiopia's fiscal year runs 8 July–7 July; ETMOD system ET_2025 corresponds to it). Indexed/annual values must be corpus-grounded, never invented.
+- Keep exact oracle versions in `data/oracles/oracle-index.json`. ETMOD is wired through axiom-oracles' manual-lane suites; the SOUTHMOD A4.0 bundle is licensed and non-redistributable. Record only ETMOD output variable names used as comparison bindings, outputs observed on synthetic households, and comparison statistics. Never commit bundle files, dataset rows, microdata-derived statistics, or model content (parameter names or values, policy/function names, conditions, income-list compositions, DRD text). `tests/test_southmod_licence.py` fails CI on the syntactic forms of model content.
 - Sync `axiom-encode` and `.axiom/toolchain.toml` before substantial encoding runs (fetch origin and read the current version before every encode run and before choosing any version-bump number).
 
 ## Do Not

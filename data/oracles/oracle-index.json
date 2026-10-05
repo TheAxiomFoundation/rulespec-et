@@ -1,42 +1,147 @@
 {
-  "generated_at": "2026-07-09",
+  "generated_at": "2026-10-04",
   "jurisdiction": "et",
-  "focus": "Ethiopia tax-benefit surface: employment and business income tax (with the minimum alternative tax), presumptive turnover tax, pension contributions, VAT, the urban and rural PSNP arms, school feeding and uniforms, and fuel subsidies.",
+  "focus": "Ethiopia tax-benefit surface. The wired ETMOD suites compare the employment and business income tax (with the minimum alternative tax) and the Category B gross-receipts tax under Proclamation 979/2016 as amended by Proclamation 1395/2025, pension contributions under Proclamations 715/2011 and 714/2011, VAT on domestic electricity and water under Proclamation 1341/2024, and a single-employee disposable-income composition. The repository's stated scope also covers the urban and rural Productive Safety Net Programme arms, school feeding and uniforms, and fuel subsidies, set administratively and not yet encoded.",
   "purpose": "Household-level comparison-oracle and supporting-source references for Ethiopia Axiom coverage. None of these are legal authority.",
   "oracle_scope": "A RuleSpec oracle must be an executable, pinned external calculator that accepts household-level inputs and returns household-level tax-benefit outputs comparable to Axiom outputs. Aggregate simulators, distributional reports, parameter documentation, and public model summaries are supporting references only, not oracles.",
   "oracles": [
     {
       "id": "etmod",
       "name": "ETMOD",
-      "url": "https://www.wider.unu.edu/project/southmod-simulating-tax-and-benefit-policies-development",
+      "url": "https://www.wider.unu.edu/about/etmod-%E2%80%93-simulating-tax-and-benefit-policies-development-ethiopia",
       "local_path": "~/.axiom/oracles/southmod/bundle/SOUTHMOD_A4.0 (licensed, non-redistributable; never committed)",
       "commit": null,
       "model": "SOUTHMOD_A4.0",
-      "dataset": "et_2014_a4, et_2016_a5, et_2019_a2, et_2022_a2 (survey-based input microdata shipped in the bundle)",
-      "role": "Household-level tax-benefit comparison oracle for Ethiopia. ETMOD is the SOUTHMOD tax-benefit microsimulation model for Ethiopia (UNU-WIDER). Built on the EUROMOD platform; systems ET_2014-ET_2025.",
+      "dataset": "et_2022_a2 dataset configuration (Central Statistical Agency of Ethiopia, Ethiopia Socioeconomic Panel Survey Wave 5, 2021-2022); only its variable list is read and every comparison household is synthetic",
+      "role": "Household-level tax-benefit comparison oracle for Ethiopia, wired through per-case suites in axiom-oracles (see wired). ETMOD is the SOUTHMOD tax-benefit microsimulation model for Ethiopia (UNU-WIDER), built on the EUROMOD platform.",
       "coverage": [
         "employment_income_tax",
         "business_income_tax",
         "minimum_alternative_tax",
-        "presumptive_turnover_tax",
+        "presumptive_tax",
         "pension_contributions",
         "vat",
-        "psnp_public_works",
-        "psnp_direct_support",
-        "school_feeding_in_kind",
-        "school_uniforms_in_kind",
-        "fuel_subsidies",
         "household_disposable_income"
       ],
       "authority": "wired_per_case_parity",
       "availability_check": {
-        "checked_at": "2026-07-09",
+        "checked_at": "2026-10-04",
         "status": "wired_per_case_parity",
-        "detail": "The licensed SOUTHMOD A4.0 bundle held under the Adhesion Agreement for the Ghana lane also carries ETMOD with systems ET_2014-ET_2025 and four bundled survey-based input datasets, so per-case and dataset-backed probes need no further data application (personal links; non-redistributable; the bundle and datasets must never be committed or shared). The EUROMOD-engine runtime is proven from the Ghana lane (x86_64 py3.12 venv + euromod 0.2.18 + x64 .NET 10). Per-case parity suites run against ET_2025 (= EFY2025/26, carrying the Proclamation 1395/2025 schedules); the ET_2025/et_2022_a2 employment uprating factor is 1.7035555555555557 (probed). The ET_2025 policy-surface inventory is recorded at ~/.axiom/oracles/southmod/harness-et/etmod/inventory_result.json.",
-        "systems": "ET_2014-ET_2025",
-        "validation_system": "ET_2025 (EFY2025/26)"
+        "detail": "UNU-WIDER approved the SOUTHMOD access request on 2026-07-07; the SOUTHMOD A4.0 bundle that approval covers includes ETMOD (sha256 in bundle_sha256) and is held locally under the SOUTHMOD_A4.0 Adhesion Agreement (personal links; non-redistributable; never committed or shared). ETMOD is wired as the Ethiopia household oracle by six per-case comparison suites in TheAxiomFoundation/axiom-oracles (comparisons/et-*.yaml, axiom-oracles#256 and #257), run on system ET_2025 through scripts/run_comparison.py on the licensed machine. They are manual-lane suites (ci: manual): clause 4 of the agreement bars giving the bundle or its input data to any third party, so they never run on shared CI runners. On 2026-10-04, against rulespec-et 98dfbac and axiom-rules-engine 6f62c12: 32 cases, 34 comparisons, 32 matched and 2 dispositioned, both in et-business-mat as upstream engine gaps. At 3,000,000 birr receipts and 60,000 taxable income ETMOD's tin02_s is 81,000, where Article 23(3) makes the 2.5% minimum tax a floor and the statutory payable is 75,000 (etmod-mat-added-instead-of-reduced-floor); at 50,000 receipts tin02_s is 1,250, a minimum tax that Article 23(4) does not apply to a Category B taxpayer under the Article 49 regime, where the statutory figure is 0 (etmod-mat-applied-to-article-49-regime-taxpayers). Oracle-side findings are recorded in axiom-oracles axiom_oracles/data/etmod_issues.json. The rulespec-et modules these suites compare carry manual-attestation manifests, not supervised-encoder output (rulespec-et#19), so the comparisons should be re-run after any supervised re-encode."
       },
-      "bundle_sha256": "741855bd23cf4c4a0a61a80def06a078fd3f0551a452b5853a2e46c7e2486a5f"
+      "bundle_sha256": "741855bd23cf4c4a0a61a80def06a078fd3f0551a452b5853a2e46c7e2486a5f",
+      "systems": "ET_2025 (EFY2025/26; all six wired suites run it, see wired)",
+      "acknowledgement": "Results are based on the tax-benefit microsimulation model for Ethiopia (ETMOD) in SOUTHMOD_A4.0, developed, maintained and managed by UNU-WIDER with SASPRI, the LSE International Inequalities Institute and local partners, run on the EUROMOD software (EM_Executable 1.0.0 via the euromod connector 0.2.18) under the et_2022_a2 dataset configuration (Central Statistical Agency of Ethiopia, Ethiopia Socioeconomic Panel Survey Wave 5, 2021-2022); only the dataset's variable list is read and every household is synthetic. The results and their interpretation are Axiom's responsibility.",
+      "wired": {
+        "oracles_prs": [
+          "TheAxiomFoundation/axiom-oracles#256",
+          "TheAxiomFoundation/axiom-oracles#257"
+        ],
+        "system": "ET_2025",
+        "dataset_configuration": "et_2022_a2 (variable list only; every comparison household is synthetic)",
+        "last_run": {
+          "date": "2026-10-04",
+          "axiom_rules_engine": "6f62c12",
+          "rulespec_et": "98dfbac"
+        },
+        "totals": {
+          "suites": 6,
+          "cases": 32,
+          "comparisons": 34,
+          "matched": 32,
+          "dispositioned": 2
+        },
+        "suites": [
+          {
+            "suite": "et-business-mat",
+            "cases": 5,
+            "comparisons": 5,
+            "matched": 3,
+            "dispositioned": 2,
+            "axiom_outputs": [
+              "et:statutes/proc-1395-2025/income-tax-amendment-2025#business_income_tax_payable"
+            ],
+            "etmod_variables": [
+              "tin02_s"
+            ],
+            "note": "Two of the five cases are dispositioned upstream engine gaps (etmod-mat-added-instead-of-reduced-floor, etmod-mat-applied-to-article-49-regime-taxpayers). The one Category B case keeps income in the Article 19(2) nil band, so no case tests the schedule for a Category B taxpayer above it, where the module has no Category B gate (rulespec-et#19 item 1)."
+          },
+          {
+            "suite": "et-dispy",
+            "cases": 5,
+            "comparisons": 5,
+            "matched": 5,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "et:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income"
+            ],
+            "etmod_variables": [
+              "ils_dispy"
+            ],
+            "note": "The compared pipeline is an Axiom composition for a single employee, not a provision of law, so agreement tests the imported Article 11 tax and Proclamation 715/2011 employee share at five monthly incomes; it does not validate a definition of disposable income."
+          },
+          {
+            "suite": "et-paye-rate-schedule",
+            "cases": 8,
+            "comparisons": 8,
+            "matched": 8,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "et:statutes/proc-1395-2025/income-tax-amendment-2025#employment_income_tax"
+            ],
+            "etmod_variables": [
+              "tin01_s"
+            ]
+          },
+          {
+            "suite": "et-pension-contributions",
+            "cases": 3,
+            "comparisons": 5,
+            "matched": 5,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "et:statutes/proc-715-2011/private-organization-employees-pension#private_employee_pension_contribution",
+              "et:statutes/proc-715-2011/private-organization-employees-pension#private_employer_pension_contribution",
+              "et:statutes/proc-714-2011/public-servants-pension#military_police_office_pension_contribution"
+            ],
+            "etmod_variables": [
+              "tscee_s",
+              "tscer_s",
+              "tscer_s"
+            ]
+          },
+          {
+            "suite": "et-presumptive",
+            "cases": 5,
+            "comparisons": 5,
+            "matched": 5,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "et:statutes/proc-1395-2025/income-tax-amendment-2025#presumptive_gross_receipts_tax"
+            ],
+            "etmod_variables": [
+              "ttn_s"
+            ],
+            "note": "Outputs on both sides follow a marginal reading of the Article 50 table, which lists only receipt bands and percentages, so agreement does not settle that reading."
+          },
+          {
+            "suite": "et-vat",
+            "cases": 6,
+            "comparisons": 6,
+            "matched": 6,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "et:statutes/proc-1341-2024/value-added-tax-proclamation#electricity_vat",
+              "et:statutes/proc-1341-2024/value-added-tax-proclamation#water_vat"
+            ],
+            "etmod_variables": [
+              "tva_s",
+              "tva_s"
+            ],
+            "note": "Both sides exempt the whole expenditure at 200 kWh / 15 m3 and tax all of it one unit above (a cliff), a reading of Directive 1021/2024 that is still an open methodology question (rulespec-et#19 item 2), so agreement is not independent validation of it. The expenditure input is the model's own value fed across unchanged, so the cases test the 15% rate and the thresholds, not the statutory taxable value."
+          }
+        ]
+      }
     }
   ]
 }

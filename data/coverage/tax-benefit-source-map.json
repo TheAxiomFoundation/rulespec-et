@@ -1,16 +1,195 @@
 {
-  "generated_at": "2026-07-09",
+  "generated_at": "2026-10-04",
   "jurisdiction": "et",
   "validation_year": "EFY2025/26",
-  "note": "ETMOD ET_2025 active-instrument map to governing Ethiopia law. Instrument keys are the model's EUROMOD-convention policy names (structure metadata only; no licensed content). All governing instruments below are captured in axiom-corpus and encoded in this repository (rulespec-et#1, closed 2026-07-09 with two findings).",
-  "instruments": [
-    {"instrument": "tin_et (employment income tax)", "outputs": ["tin01_s"], "governing_law": "Income Tax (Amendment) Proclamation No. 1395/2025 Schedule A monthly bands (2,000/4,000/7,000/10,000/14,000 birr at 15/20/25/30/35 percent, first 2,000 exempt) on the Proclamation 979/2016 gross-employment base (Arts 10(3), 65(1)(c))", "status": "captured_and_encoded"},
-    {"instrument": "tin_et (business income tax + MAT)", "outputs": ["tin02_s"], "governing_law": "Proclamation No. 1395/2025 Schedule C annual bands (24,000/48,000/84,000/120,000/168,000) and Article 23 minimum alternative tax (2.5 percent of turnover top-up; two parity findings recorded on the model's MAT treatment)", "status": "captured_and_encoded"},
-    {"instrument": "ttn_et (presumptive turnover tax)", "outputs": ["ttn_s"], "governing_law": "Proclamation No. 1395/2025 presumptive schedule: 2/3/5/7/9 percent marginal on annual turnover to 2,000,000 birr (Category A/B split at 2,000,000)", "status": "captured_and_encoded"},
-    {"instrument": "tscee_et / tscer_et (pension contributions)", "outputs": ["tscee_s", "tscer_s"], "governing_law": "Private Organization Employees' Pension Proclamation No. 715/2011 (7 percent employee / 11 percent employer) and Public Servants' Pension Proclamation No. 714/2011 (7/11; military and police employer share 25 percent under Article 11)", "status": "captured_and_encoded"},
-    {"instrument": "tva_et (VAT)", "outputs": ["tva_s"], "governing_law": "VAT Proclamation No. 1341/2024, 15 percent standard rate; domestic electricity above 200 kWh and water above 15 cubic metres per Directive No. 1021/2024 thresholds", "status": "captured_and_encoded"},
-    {"instrument": "bsaur00_et - bsaur03_et (PSNP urban/rural public works and direct support)", "outputs": ["bsaur00_s", "bsaur01_s", "bsaur02_s", "bsaur03_s"], "governing_law": "Administrative: PSNP implementation manuals (urban PW 203 birr/day x 4 days, DS 711 birr/month; rural arms) - programme amounts documented as parity dispositions where no gazetted instrument fixes them", "status": "captured_programme_documentation"},
-    {"instrument": "bed01_et / bed02_et (school feeding and uniforms, in kind)", "outputs": ["bed01_s", "bed02_s"], "governing_law": "Administrative: Addis Ababa school feeding (20 birr per school day x food CPI) and grade-banded uniform amounts - model calibration documented as dispositions", "status": "documented_disposition"},
-    {"instrument": "bof_et (fuel subsidies)", "outputs": ["bof_s"], "governing_law": "Administrative: consumer-price subsidy gross-up (fuel 40 percent, kerosene 33 percent) from petroleum pricing policy - documented as dispositions", "status": "documented_disposition"}
+  "focus": "Ethiopia tax-benefit surface: employment and business income tax (with the minimum alternative tax) and the Category B gross-receipts tax under the Federal Income Tax Proclamation No. 979/2016 as amended by Proclamation No. 1395/2025, pension contributions under Proclamations No. 715/2011 and No. 714/2011, value added tax under Proclamation No. 1341/2024, and the administratively set transfer programmes (the urban and rural Productive Safety Net Programme arms, school feeding and uniforms, and fuel subsidies).",
+  "scope": "ethiopia_tax_benefit",
+  "jurisdiction_layers": {
+    "national": {
+      "namespace": "et",
+      "description": "Ethiopia is a federation, but the modelled instruments are federal, so all encoded statutes, regulations, and programme policy surfaces live under the single national et/ namespace; there is no regional layer."
+    }
+  },
+  "purpose": "Machine-readable map from Ethiopia tax-benefit tracks to their governing law, the RuleSpec modules that encode them, and the axiom-oracles suites that compare them. Amounts, rates and thresholds live in the modules, which cite the captured provisions; this map restates none of them.",
+  "source_priority": [
+    "Federal Negarit Gazeta proclamation prints (House of Peoples' Representatives; bilingual Amharic/English, the English text is citable), recording whether a mirror host served the facsimile.",
+    "Council of Ministers regulations made under the proclamations.",
+    "Ministry of Revenues directives and ministry programme documentation (PSNP implementation manuals, school feeding and uniform programme documents, petroleum pricing and subsidy instruments) only after the governing proclamation is identified, or for rules set administratively rather than by proclamation.",
+    "ETMOD (SOUTHMOD A4.0, UNU-WIDER) as a pinned household-level comparison reference for parity tests (see data/oracles/oracle-index.json); supporting only, never legal authority."
+  ],
+  "current_blockers": [
+    {
+      "id": "encoding-debt-rulespec-et-19",
+      "issue": "https://github.com/TheAxiomFoundation/rulespec-et/issues/19",
+      "description": "Encoding debt found by the 2026-10-04 oracle port: the Article 19(2) business schedule has no Category B gate (item 1); Directive No. 1021/2024 is encoded two ways, as a cliff in the VAT module and as an allowance in the directive module, pending a methodology ruling (item 2); and no compared module is supervised-encoder output. Fix only through the supervised encoder."
+    }
+  ],
+  "tracks": [
+    {
+      "id": "employment-income-tax",
+      "namespace": "et",
+      "bucket": "statutes",
+      "primary_source": "Income Tax (Amendment) Proclamation No. 1395/2025, Article 11 (employment income tax rates), substituted into the Federal Income Tax Proclamation No. 979/2016; corpus et/statute/proc-1395-2025/income-tax-amendment-2025.",
+      "agency_surface": "Ministry of Revenues directives and guidance.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/statutes/proc-1395-2025/income-tax-amendment-2025.yaml"
+      ],
+      "oracle_suites": [
+        "et-paye-rate-schedule"
+      ]
+    },
+    {
+      "id": "business-income-tax",
+      "namespace": "et",
+      "bucket": "statutes",
+      "primary_source": "Income Tax (Amendment) Proclamation No. 1395/2025, Article 19 (business income tax rates, annual) and Article 3 (categories of taxpayers); corpus et/statute/proc-1395-2025/income-tax-amendment-2025.",
+      "agency_surface": "Ministry of Revenues directives and guidance.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/statutes/proc-1395-2025/income-tax-amendment-2025.yaml"
+      ],
+      "oracle_suites": [
+        "et-business-mat"
+      ],
+      "note": "The schedule has no Category B gate (rulespec-et#19 item 1); no committed comparison case exercises it."
+    },
+    {
+      "id": "minimum-alternative-tax",
+      "namespace": "et",
+      "bucket": "statutes",
+      "primary_source": "Income Tax (Amendment) Proclamation No. 1395/2025, Article 23 (minimum alternative tax), including sub-article 3 (reduction by the business income tax paid) and sub-article 4 (exclusion of the Article 49 gross revenue regime); corpus et/statute/proc-1395-2025/income-tax-amendment-2025.",
+      "agency_surface": "Ministry of Revenues directives and guidance.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/statutes/proc-1395-2025/income-tax-amendment-2025.yaml"
+      ],
+      "oracle_suites": [
+        "et-business-mat"
+      ]
+    },
+    {
+      "id": "category-b-gross-receipts-tax",
+      "namespace": "et",
+      "bucket": "statutes",
+      "primary_source": "Income Tax (Amendment) Proclamation No. 1395/2025, Article 49 (total gross revenue tax regime) and Article 50 (tax on annual gross sales for Category B taxpayers); corpus et/statute/proc-1395-2025/income-tax-amendment-2025.",
+      "agency_surface": "Ministry of Revenues directives and guidance.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/statutes/proc-1395-2025/income-tax-amendment-2025.yaml"
+      ],
+      "oracle_suites": [
+        "et-presumptive"
+      ]
+    },
+    {
+      "id": "income-tax-regulation",
+      "namespace": "et",
+      "bucket": "regulations",
+      "primary_source": "Council of Ministers income tax regulation No. 410/2017, made under the Federal Income Tax Proclamation No. 979/2016.",
+      "status": "planned"
+    },
+    {
+      "id": "private-organization-pension-contributions",
+      "namespace": "et",
+      "bucket": "statutes",
+      "primary_source": "Private Organization Employees' Pension Proclamation No. 715/2011 as amended, Article 10 (contributions based on salary, employer and employee shares); corpus et/statute/proc-715-2011/private-organization-employees-pension.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/statutes/proc-715-2011/private-organization-employees-pension.yaml"
+      ],
+      "oracle_suites": [
+        "et-pension-contributions"
+      ]
+    },
+    {
+      "id": "public-servants-pension-contributions",
+      "namespace": "et",
+      "bucket": "statutes",
+      "primary_source": "Public Servants' Pension Proclamation No. 714/2011 as amended, Article 10 (Civil Service Pension Fund contributions) and Article 11 (Military and Police Service Pension Fund contributions); corpus et/statute/proc-714-2011/public-servants-pension.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/statutes/proc-714-2011/public-servants-pension.yaml"
+      ],
+      "oracle_suites": [
+        "et-pension-contributions"
+      ],
+      "note": "et-pension-contributions compares the military and police office share only; the public servant's own share and the civil service office share have no comparison."
+    },
+    {
+      "id": "value-added-tax",
+      "namespace": "et",
+      "bucket": "statutes",
+      "primary_source": "Value Added Tax Proclamation No. 1341/2024, Article 8 (imposition and rate of tax) and Annex 2 Article 1(m) (domestic electricity and water exemption up to amounts set by Ministry of Finance directive); corpus et/statute/proc-1341-2024/value-added-tax-proclamation.",
+      "agency_surface": "Ministry of Revenues directives and guidance.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/statutes/proc-1341-2024/value-added-tax-proclamation.yaml"
+      ],
+      "oracle_suites": [
+        "et-vat"
+      ],
+      "note": "et-vat compares the domestic electricity and water outputs only."
+    },
+    {
+      "id": "vat-domestic-electricity-water-exemption",
+      "namespace": "et",
+      "bucket": "regulations",
+      "primary_source": "Ministry of Finance Directive No. 1021/2024, Article 2 (VAT exemption for domestic electricity and water consumption); corpus et/regulation/dir-1021-2024/vat-electricity-water-exemption-directive.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/regulations/dir-1021-2024/vat-electricity-water-exemption-directive.yaml"
+      ],
+      "note": "Encoded as an allowance here and as a cliff in the VAT module, pending a methodology ruling (rulespec-et#19 item 2). No suite compares this module."
+    },
+    {
+      "id": "single-employee-disposable-income",
+      "namespace": "et",
+      "bucket": "statutes",
+      "primary_source": "Composition, not a provision of law: the Proclamation No. 1395/2025 Article 11 employment income tax and the Proclamation No. 715/2011 Article 10 employee pension share, imported into one monthly single-employee pipeline; corpus et/statute/proc-1395-2025/income-tax-amendment-2025.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "et/statutes/composed/pilot-worker-disposable-income-pipeline.yaml"
+      ],
+      "oracle_suites": [
+        "et-dispy"
+      ],
+      "note": "Assembled for the EFY2025/26 program spec et/programs/income-tax/efy-2025-26.yaml. rulespec-et#19 asks for it to be rebuilt as a module.kind: composition program through axiom-compose."
+    },
+    {
+      "id": "psnp-urban",
+      "namespace": "et",
+      "bucket": "policies",
+      "primary_source": "Productive Safety Net Programme (urban arm) implementation manuals, set administratively rather than by proclamation.",
+      "status": "planned"
+    },
+    {
+      "id": "psnp-rural",
+      "namespace": "et",
+      "bucket": "policies",
+      "primary_source": "Productive Safety Net Programme (rural arm) implementation manuals, set administratively rather than by proclamation.",
+      "status": "planned"
+    },
+    {
+      "id": "school-feeding",
+      "namespace": "et",
+      "bucket": "policies",
+      "primary_source": "School feeding programme documents, set administratively rather than by proclamation.",
+      "status": "planned"
+    },
+    {
+      "id": "school-uniforms",
+      "namespace": "et",
+      "bucket": "policies",
+      "primary_source": "School uniform programme documents, set administratively rather than by proclamation.",
+      "status": "planned"
+    },
+    {
+      "id": "fuel-subsidies",
+      "namespace": "et",
+      "bucket": "policies",
+      "primary_source": "Petroleum pricing and subsidy instruments, set administratively rather than by proclamation.",
+      "status": "planned"
+    }
   ]
 }
