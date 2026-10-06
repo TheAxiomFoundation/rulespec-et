@@ -1,0 +1,33 @@
+- name: domestic consumption above both exempt limits
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.domestic_monthly_electricity_consumption: 250
+    ? et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.domestic_monthly_non_bottled_water_consumption
+    : 20
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#domestic_electricity_consumption_exempt_from_vat: 200
+    ? et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#domestic_non_bottled_water_consumption_exempt_from_vat
+    : 15
+- name: wholesale electricity supplier collects VAT
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.supplier_generates_and_transmits_electricity: true
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.supplier_supplies_wholesale_electricity: true
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#wholesale_electricity_vat_collection_required: holds
+- name: non-wholesale electricity supplier is not subject to wholesale collection
+    duty
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.supplier_generates_and_transmits_electricity: true
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.supplier_supplies_wholesale_electricity: false
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#wholesale_electricity_vat_collection_required: not_holds
+- name: supplier without generation and transmission activity is not subject to wholesale
+    collection duty
+  period: 2024-09
+  input:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.supplier_generates_and_transmits_electricity: false
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#input.supplier_supplies_wholesale_electricity: true
+  output:
+    et:regulations/dir-1021-2024/vat-electricity-water-exemption-directive#wholesale_electricity_vat_collection_required: not_holds
