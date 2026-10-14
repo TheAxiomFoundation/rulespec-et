@@ -1,25 +1,31 @@
-"""Encoding-manifest claims that were already stale on 2026-10-14.
+"""Encoding-manifest state recorded on 2026-10-14.
 
-Each entry is one claim in one manifest under .axiom/encoding-manifests/:
-the file it attests, the sha256 the manifest records for that file, the
-sha256 the file had on 2026-10-14, the sha256 of the manifest file itself,
-and the commits that changed the file after it was attested.
+KNOWN_STALE_ATTESTATIONS lists manifest claims that were already stale. Each
+entry is one claim in one manifest under .axiom/encoding-manifests/: the
+file it attests, the sha256 the manifest records for that file, the sha256
+the file had on 2026-10-14, the sha256 of the manifest file itself, and the
+commits that changed the file after it was attested.
 
 All of these changes landed in July 2026 (rulespec-et#8), while this
 repository's generated-RuleSpec guard was off (run-generated-guard: false
 until 2026-10-11), so CI never compared the edited files with their
 manifests.
 
-The manifests are manual attestations (runner: manual-attestation, schema
-axiom-encode/applied-rulespec/v1), not encoder apply records. Listing a
-claim here records the drift. It does not attest the current bytes, and the
-manifest still attests the earlier ones.
+The listed manifests are manual attestations (runner: manual-attestation,
+schema axiom-encode/applied-rulespec/v1), not encoder apply records. Listing
+a claim here records the drift. It does not attest the current bytes, and
+the manifest still attests the earlier ones.
 
-The list is closed and may only shrink. test_encoding_manifests.py fails if
-a listed file changes again or a listed manifest is edited while it stays a
-manual attestation. It reports an entry as resolved once the supervised
-encoder replaces the module's manifest; delete the entry then. Do not add
-entries: new drift fails CI and is fixed through the encoder.
+KNOWN_UNMANIFESTED_MODULES lists the RuleSpec modules that had no encoding
+manifest on 2026-10-14. Any other module without one fails.
+
+Both lists are closed and may only shrink. test_encoding_manifests.py fails
+if a listed file changes again, if a listed manifest is edited or removed
+other than by an encoder replacement, if a module loses its manifest, or if
+an entry is added or rewritten (each entry's digest must be in that file's
+ADOPTED_LIST_SHA256). It warns when an entry resolves, for example once the
+supervised encoder replaces a module's manifest; delete the entry then. New
+drift is fixed through the encoder, not listed.
 """
 
 from __future__ import annotations
@@ -36,9 +42,6 @@ class StaleAttestation(NamedTuple):
     changed_by: tuple[str, ...]
     change: str
 
-
-#: Number of entries when the list was adopted. The list may only shrink.
-ADOPTED_COUNT = 4
 
 KNOWN_STALE_ATTESTATIONS: tuple[StaleAttestation, ...] = (
     StaleAttestation(
@@ -87,4 +90,8 @@ KNOWN_STALE_ATTESTATIONS: tuple[StaleAttestation, ...] = (
         changed_by=("2be2724994e517d2c151f1a0337d46230ebce163",),
         change=("no formula, parameter or import changed: 3 proof excerpts changed"),
     ),
+)
+
+KNOWN_UNMANIFESTED_MODULES: tuple[str, ...] = (
+    "et/regulations/dir-1021-2024/vat-electricity-water-exemption-directive.yaml",
 )
